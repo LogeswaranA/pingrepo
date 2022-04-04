@@ -1,0 +1,9 @@
+{
+    "name": "plugin-reputation",
+    "version": "0.0.1",
+    "description": "Small wrapper to ping servers",
+    "dependencies": {
+        "ping": "^0.4.1",
+        "util": "^0.12.4"
+    }
+}

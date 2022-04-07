@@ -1,20 +1,14 @@
-const ping = require("ping");
-
+import isPortReachable from 'is-port-reachable';
 var ipList = ['104.152.209.58', '104.194.249.219', '1.2.3.4', '5.1.2.3', '104.152.209.58'];
-
 var dailyping = [];
-
 const pingIP = async () => {
-    for (i = 0; i < ipList.length; i++) {
-      const result = await ping.promise.probe(ipList[i], {
-        timeout: 3,
-        extra: ["-i", "2"],
-      });
+    for (var i = 0; i < ipList.length; i++) {
+      var alive = await isPortReachable(6688, {host: ipList[i]});
       var flag=0;
-      if(result.alive){
+      if(alive){
         flag=1;
       }
-      let obj = { "IPAddress": ipList[i], "Alive": result.alive, "flag":flag };
+      let obj = { "IPAddress": ipList[i], "Alive": alive, "flag":flag };
       dailyping.push(obj);
     }
     console.log("dailyping", dailyping)

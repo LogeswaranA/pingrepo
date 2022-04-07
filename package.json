@@ -2,7 +2,9 @@
     "name": "plugin-reputation",
     "version": "0.0.1",
     "description": "Small wrapper to ping servers",
+    "type":"module",
     "dependencies": {
+        "is-port-reachable": "^4.0.0",
         "ping": "^0.4.1",
         "util": "^0.12.4"
     }

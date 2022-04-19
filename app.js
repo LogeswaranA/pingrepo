@@ -1,9 +1,10 @@
-import isPortReachable from 'is-port-reachable';
+const isReachable = require('is-reachable');
+
 var ipList = ['104.152.209.58', '104.194.249.219', '1.2.3.4', '5.1.2.3', '104.152.209.58'];
 var dailyping = [];
 const pingIP = async () => {
     for (var i = 0; i < ipList.length; i++) {
-      var alive = await isPortReachable(6688, {host: ipList[i]});
+      var alive = await isReachable(`http://${ipList[i]}:6688`);
       var flag=0;
       if(alive){
         flag=1;

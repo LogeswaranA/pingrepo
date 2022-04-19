@@ -4,12 +4,13 @@ var ipList = ['104.152.209.58', '104.194.249.219', '1.2.3.4', '5.1.2.3', '104.15
 var dailyping = [];
 const pingIP = async () => {
     for (var i = 0; i < ipList.length; i++) {
-      var alive = await isReachable(`http://${ipList[i]}:6688`);
+      var flag6688 = await isReachable(`http://${ipList[i]}:6688`);
+      var flag6689 = await isReachable(`https://${ipList[i]}:6689`);
       var flag=0;
-      if(alive){
+      if(flag6688 || flag6689){
         flag=1;
       }
-      let obj = { "IPAddress": ipList[i], "Alive": alive, "flag":flag };
+      let obj = { "IPAddress": ipList[i], "Flag6688": flag6688,"Flag6689":flag6689, "flag":flag };
       dailyping.push(obj);
     }
     console.log("dailyping", dailyping)
